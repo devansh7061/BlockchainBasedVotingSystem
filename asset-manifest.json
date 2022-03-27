@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/BlockchainBasedVotingSystem/static/css/main.e811357b.chunk.css",
+    "main.js": "/BlockchainBasedVotingSystem/static/js/main.48142a13.chunk.js",
+    "main.js.map": "/BlockchainBasedVotingSystem/static/js/main.48142a13.chunk.js.map",
+    "runtime-main.js": "/BlockchainBasedVotingSystem/static/js/runtime-main.deb82adc.js",
+    "runtime-main.js.map": "/BlockchainBasedVotingSystem/static/js/runtime-main.deb82adc.js.map",
+    "static/css/2.42daaa2d.chunk.css": "/BlockchainBasedVotingSystem/static/css/2.42daaa2d.chunk.css",
+    "static/js/2.9ea9c49f.chunk.js": "/BlockchainBasedVotingSystem/static/js/2.9ea9c49f.chunk.js",
+    "static/js/2.9ea9c49f.chunk.js.map": "/BlockchainBasedVotingSystem/static/js/2.9ea9c49f.chunk.js.map",
+    "index.html": "/BlockchainBasedVotingSystem/index.html",
+    "precache-manifest.25e90807132637b9c403e0369adf836f.js": "/BlockchainBasedVotingSystem/precache-manifest.25e90807132637b9c403e0369adf836f.js",
+    "service-worker.js": "/BlockchainBasedVotingSystem/service-worker.js",
+    "static/css/2.42daaa2d.chunk.css.map": "/BlockchainBasedVotingSystem/static/css/2.42daaa2d.chunk.css.map",
+    "static/css/main.e811357b.chunk.css.map": "/BlockchainBasedVotingSystem/static/css/main.e811357b.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.deb82adc.js",
+    "static/css/2.42daaa2d.chunk.css",
+    "static/js/2.9ea9c49f.chunk.js",
+    "static/css/main.e811357b.chunk.css",
+    "static/js/main.48142a13.chunk.js"
+  ]
+}
