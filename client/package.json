@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "homepage": "https://devansh7061.github.io/BlockchainBasedVotingSystem",
+  "homepage": "https://devansh7061.github.io/BlockchainVotingSystem",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

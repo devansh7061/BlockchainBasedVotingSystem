@@ -1,3 +1,5 @@
+import { Biconomy } from "@biconomy/mexa";
+import Web3 from "web3";
 import React, { Component } from "react";
 import VotingContract from "./contracts/VotingContract.json";
 import getWeb3 from "./getWeb3";
@@ -6,6 +8,271 @@ import NavbarAdmin from "./NavbarAdmin";
 import { FormGroup, FormControl, Button, Card } from "react-bootstrap";
 import img from "./img_avatar.png";
 
+const biconomy = new Biconomy(
+  new Web3.providers.HttpProvider(
+    "https://kovan.infura.io/v3/686061bed3ac4c8785426e9332e78166"
+  ),
+  { apiKey: "3kAAyMWnw.7d8aed32-59fa-43a4-a361-913c52882e5c", debug: true }
+);
+let web3 = new Web3(biconomy);
+let instance;
+let config = {
+  contract: {
+    address: "0x60D7b3E973e8fe365f72Dfaa584e008BCF8D7188",
+    abi: [
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "_trustedForwarder",
+            type: "address",
+          },
+        ],
+        stateMutability: "nonpayable",
+        type: "constructor",
+      },
+      {
+        inputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        name: "candidateDetails",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "candidateId",
+            type: "uint256",
+          },
+          {
+            internalType: "string",
+            name: "name",
+            type: "string",
+          },
+          {
+            internalType: "string",
+            name: "details",
+            type: "string",
+          },
+          {
+            internalType: "uint256",
+            name: "voteCount",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "forwarder",
+            type: "address",
+          },
+        ],
+        name: "isTrustedForwarder",
+        outputs: [
+          {
+            internalType: "bool",
+            name: "",
+            type: "bool",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        name: "voterAddresses",
+        outputs: [
+          {
+            internalType: "string",
+            name: "name",
+            type: "string",
+          },
+          {
+            internalType: "string",
+            name: "voterId",
+            type: "string",
+          },
+          {
+            internalType: "address",
+            name: "voterAddress",
+            type: "address",
+          },
+          {
+            internalType: "bool",
+            name: "hasVoted",
+            type: "bool",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "string",
+            name: "_name",
+            type: "string",
+          },
+          {
+            internalType: "string",
+            name: "_details",
+            type: "string",
+          },
+        ],
+        name: "addCandidate",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "string",
+            name: "_name",
+            type: "string",
+          },
+          {
+            internalType: "string",
+            name: "_voterId",
+            type: "string",
+          },
+          {
+            internalType: "address",
+            name: "_voterAddress",
+            type: "address",
+          },
+          {
+            internalType: "bool",
+            name: "_hasVoted",
+            type: "bool",
+          },
+        ],
+        name: "manualAddVoter",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [
+          {
+            internalType: "uint256",
+            name: "_candidateId",
+            type: "uint256",
+          },
+        ],
+        name: "vote",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "startElection",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "endEelection",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "electionStatus",
+        outputs: [
+          {
+            internalType: "bool",
+            name: "",
+            type: "bool",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "electionResults",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "viewWinner",
+        outputs: [
+          {
+            internalType: "string",
+            name: "",
+            type: "string",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "getVoterCount",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "getOwner",
+        outputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+      {
+        inputs: [],
+        name: "getCandidateCount",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "view",
+        type: "function",
+      },
+    ],
+  },
+  apiKey: "3kAAyMWnw.7d8aed32-59fa-43a4-a361-913c52882e5c",
+};
 class Vote extends Component {
   state = {
     web3: null,
@@ -24,7 +291,7 @@ class Vote extends Component {
   vote = async () => {
     await this.state.VotingInstance.methods
       .vote(this.state.candidateId)
-      .send({ from: this.state.account });
+      .send({ from: this.state.account, signatureType: biconomy.EIP712_SIGN });
     window.location.reload(false);
   };
 
@@ -42,6 +309,20 @@ class Vote extends Component {
       // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
 
+      //Biconomy SDK
+      // biconomy
+      //   .onEvent(biconomy.READY, () => {
+      //     // Initialize your dapp here like getting user accounts etc
+      //     const deployedNetwork = VotingContract.networks[6];
+      //     instance = new web3.eth.Contract(
+      //       VotingContract.abi,
+      //       deployedNetwork && deployedNetwork.address
+      //     );
+      //   })
+      //   .onEvent(biconomy.ERROR, (error, message) => {
+      //     // Handle error while initializing mexa
+      //   });
+
       // Get the contract instance.
       const networkId = await web3.eth.net.getId();
       const deployedNetwork = VotingContract.networks[networkId];
@@ -49,6 +330,7 @@ class Vote extends Component {
         VotingContract.abi,
         deployedNetwork && deployedNetwork.address
       );
+
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
 
@@ -102,7 +384,7 @@ class Vote extends Component {
         (candidate, candidateId) => {
           return (
             <div className="candidate" key={candidateId}>
-            <img src={img} className="img-cand" alt="..." />
+              <img src={img} className="img-cand" alt="..." />
               <h5 className="candidateName">{candidate.name}</h5>
               <div className="candidateDetails">
                 <div>Candidate ID : {candidate.candidateId}</div>
@@ -238,11 +520,11 @@ class Vote extends Component {
               Get Name
             </Button> */}
 
-        {this.state.toggle ? (
+        {/* {this.state.toggle ? (
           <div>You can only vote to your own constituency</div>
         ) : (
           ""
-        )}
+        )} */}
 
         <div>{candidateList}</div>
       </div>
